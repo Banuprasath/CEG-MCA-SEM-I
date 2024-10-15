@@ -1,1 +1,226 @@
+/* 
+
+
+**Problem Statement:**
+
+You are tasked with creating a course enrollment system using object-oriented programming concepts in Java. This system will allow students to enroll in courses, manage balances, and calculate the total cost of enrolling in a course based on the number of units taken.
+
+### Requirements:
+
+1. Class `Student
+   - Attributes:
+     - `name` (String) : The name of the student.
+     - `id` (String) : A unique identifier for the student.
+     - `balance` (double) : The balance amount available in the student’s account.
+   - Constructors:
+     - Constructor 1: Initializes `name`, `id`, and `balance`.
+     - Constructor 2: Initializes `name` and `id`, with a default value for `balance` (set to 0).
+   - Methods:
+     - `EnrollCourse(Course course, int units)`: A method that allows the student to enroll in a course for a specified number of units.
+     - `AddBalance(double amount)`: Adds a certain amount to the student's balance.
+
+2. Class Course:
+   - Attributes:
+     - `courseName` (String): The name of the course.
+     - `ccode` (String): A unique course code for identification.
+     - `unitCost` (double): The cost per unit for the course.
+     - `availUnits` (int): The available number of units for the course.
+   - Constructors:
+     - Constructor 1: Initializes all attributes.
+     - Constructor 2: Initializes `courseName`, `ccode`, and `unitCost`, with a default value for `availUnits` (set to 10).
+   - Methods:
+     - `display()`: Displays the details of the course.
+     - `reduce(int units)`: Reduces the number of available units after enrollment.
+
+3. Class `Enroll`:
+   - Attributes:
+     - `studentId` (String): The ID of the student enrolling in the course.
+     - `ccourse` (Course): The course that the student is enrolling in.
+     - `enrollUnits` (int): The number of units the student is enrolling for.
+   - Method:
+     - `CalculateTotalCost()`: Calculates the total cost of enrollment based on the course’s unit cost and the number of units. It will use the `Course` object as a parameter.
+
+### Additional Information:
+
+- The `Student` class should handle enrollment and balance management.
+- The `Course` class should track course details and the number of available units.
+- The `Enroll` class should handle the logic for calculating the total cost of enrollment based on the course's unit cost and the units chosen by the student.
+
+
+
+
+
+*/
+
+
+
+
+
+import java.util.Scanner;
+
+// Class representing a Student
+class Student {
+    String name;
+    int id;
+    double balance;
+
+    // Constructor 1
+    Student(String name, int id, double balance) {
+        this.name = name;
+        this.id = id;
+        this.balance = balance;
+    }
+
+    // Constructor 2
+    Student(String name, int id) {
+        this.name = name;
+        this.id = id;
+        this.balance = 0.0;
+    }
+
+    // Method to enroll in a course
+    void enrollCourse(Course course, int units) {
+        if (course.availUnit >= units) {
+            double totalCost = units * course.unitCost;
+            if (this.balance >= totalCost) {
+                this.balance -= totalCost;
+                course.reduce(units);
+                System.out.println(name + " has successfully enrolled in " + course.courseName + " for " + units + " units.");
+            } else {
+                System.out.println("Insufficient balance to enroll in the course.");
+            }
+        } else {
+            System.out.println("Not enough units available in the course.");
+        }
+    }
+
+    // Method to add balance
+    void addBalance(double amount) {
+        this.balance += amount;
+        System.out.println("Balance added. Current balance: $" + this.balance);
+    }
+}
+
+// Class representing a Course
+class Course {
+    String courseName;
+    String ccode;
+    double unitCost;
+    int availUnit;
+
+    // Constructor 1
+    Course(String courseName, String ccode, double unitCost, int availUnit) {
+        this.courseName = courseName;
+        this.ccode = ccode;
+        this.unitCost = unitCost;
+        this.availUnit = availUnit;
+    }
+
+    // Constructor 2
+    Course(String courseName, String ccode, double unitCost) {
+        this(courseName, ccode, unitCost, 30); // default availUnit as 30
+    }
+
+    // Display course details
+    void display() {
+        System.out.println("Course Name: " + courseName + ", Code: " + ccode + ", Unit Cost: $" + unitCost + ", Available Units: " + availUnit);
+    }
+
+    // Reduce units available in the course
+    void reduce(int units) {
+        if (availUnit >= units) {
+            availUnit -= units;
+        }
+    }
+}
+
+// Class representing enrollment
+class Enroll {
+    int studentId;
+    Course course;
+    int unitsEnrolled;
+
+    Enroll(int studentId, Course course, int unitsEnrolled) {
+        this.studentId = studentId;
+        this.course = course;
+        this.unitsEnrolled = unitsEnrolled;
+    }
+
+    // Method to calculate the total cost for enrolled units
+    double calculateTotalCost() {
+        return unitsEnrolled * course.unitCost;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Taking input for student
+        System.out.print("Enter Student Name: ");
+        String studentName = sc.nextLine();
+
+        System.out.print("Enter Student ID: ");
+        int studentId = sc.nextInt();
+
+        System.out.print("Enter initial balance: ");
+        double balance = sc.nextDouble();
+        Student student = new Student(studentName, studentId, balance);
+
+        // Taking input for courses
+        System.out.print("Enter Course Name: ");
+        sc.nextLine();  // Consume newline
+        String courseName = sc.nextLine();
+
+        System.out.print("Enter Course Code: ");
+        String ccode = sc.nextLine();
+
+        System.out.print("Enter Unit Cost: ");
+        double unitCost = sc.nextDouble();
+
+        System.out.print("Enter Available Units: ");
+        int availUnits = sc.nextInt();
+
+        Course course = new Course(courseName, ccode, unitCost, availUnits);
+
+        // Display course details
+        course.display();
+
+        // Adding balance
+        System.out.print("Enter amount to add to balance: ");
+        double amount = sc.nextDouble();
+        student.addBalance(amount);
+
+        // Enrolling in the course
+        System.out.print("Enter the number of units to enroll in: ");
+        int units = sc.nextInt();
+        student.enrollCourse(course, units);
+
+        // Creating enrollment and calculating total cost
+        Enroll enroll = new Enroll(student.id, course, units);
+        double totalCost = enroll.calculateTotalCost();
+        System.out.println("Total cost for enrollment: $" + totalCost);
+
+        sc.close();
+    }
+}
+
+/* 
+  Enter Student Name: John
+Enter Student ID: 101
+Enter initial balance: 300
+Enter Course Name: Java Programming
+Enter Course Code: CS101
+Enter Unit Cost: 50
+Enter Available Units: 10
+Course Name: Java Programming, Code: CS101, Unit Cost: $50.0, Available Units: 10
+Enter amount to add to balance: 200
+Balance added. Current balance: $500.0
+Enter the number of units to enroll in: 4
+John has successfully enrolled in Java Programming for 4 units.
+Total cost for enrollment: $200.0
+
+
+
+*/
 
