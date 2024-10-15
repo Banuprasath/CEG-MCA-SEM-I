@@ -98,5 +98,121 @@ int main(){
     }
     return 0;
 }
+/*
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+Enter the Ticket ID to confirm:
+101
+Ticket confirmed for ID: 101
 
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+Enter the Ticket ID to confirm:
+102
+Ticket confirmed for ID: 102
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+Enter the Ticket ID to confirm:
+103
+Ticket confirmed for ID: 103
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+Enter the Ticket ID to confirm:
+104
+Ticket confirmed for ID: 104
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+Enter the Ticket ID to confirm:
+105
+Ticket confirmed for ID: 105
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+All tickets are booked! Adding to waiting list.
+Enter the Ticket ID for waiting list:
+201
+Ticket added to waiting list for ID: 201
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+1
+All tickets are booked! Adding to waiting list.
+Enter the Ticket ID for waiting list:
+202
+Ticket added to waiting list for ID: 202
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+3
+
+----------------- The Booking List ------------------
+Ticket confirmed for ID: 101
+Ticket confirmed for ID: 102
+Ticket confirmed for ID: 103
+Ticket confirmed for ID: 104
+Ticket confirmed for ID: 105
+Ticket Not-confirmed for Waiting List ID: 201
+Ticket Not-confirmed for Waiting List ID: 202
+-----------------------------------------------------
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+2
+Enter the Ticket ID to cancel:
+103
+Ticket ID 103 has been canceled.
+New slot has been allocated for Waiting List ID: 201
+
+Enter your choice:
+ 1. Book Ticket 
+ 2. Cancel Ticket 
+ 3. View Tickets 
+ 4. Exit 
+3
+
+----------------- The Booking List ------------------
+Ticket confirmed for ID: 101
+Ticket confirmed for ID: 102
+Ticket confirmed for ID: 201
+Ticket confirmed for ID: 104
+Ticket confirmed for ID: 105
+Ticket Not-confirmed for Waiting List ID: 202
+-----------------------------------------------------
+*/
 
